@@ -1,10 +1,6 @@
 import {Component} from '@angular/core';
 
-export class Hero {
-  id: number;
-  name: string;
-  image: string;
-}
+import { Hero } from './hero';
 
 const HEROES: Hero[] = [
   {id: 11, name : 'Mr. Nice', image: 'img1.png'},
@@ -34,15 +30,7 @@ const HEROES: Hero[] = [
       </ul>
     </div>
     <div class="flex-item">
-      <div *ngIf="selectedHero">
-        <h2>{{selectedHero.name}} details</h2>
-        <img src="../img/{{selectedHero.image}}"/>
-        <div><label>id : </label>{{selectedHero.id}}</div>
-        <div>
-          <label>name : </label>
-          <input [(ngModel)]="selectedHero.name" placeholder="name"/>
-        </div>
-      </div>
+      <my-hero-detail [hero]='selectedHero'></my-hero-detail>
     </div>
   </div>
     `,
@@ -112,10 +100,9 @@ const HEROES: Hero[] = [
 export class AppComponent {
   title = "Tour of Heroes";
   heroes= HEROES;
-
- /*mise en place de la méthode onSelect*/
   selectedHero :Hero;
 
+ /*mise en place de la méthode onSelect*/
   onSelect(hero:Hero):void{
     this.selectedHero = hero;
   }
